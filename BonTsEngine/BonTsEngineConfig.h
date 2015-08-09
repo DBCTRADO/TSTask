@@ -1,0 +1,7 @@
+#pragma once
+
+// BonTsEngine ‚ÌÝ’è
+#define BONTSENGINE_1SEG_SUPPORT	// ƒƒ“ƒZƒO‘Î‰ž
+#define BONTSENGINE_H264_SUPPORT	// H.264 ‘Î‰ž
+#define BONTSENGINE_H265_SUPPORT	// H.265 ‘Î‰ž
+#define BONTSENGINE_MPEG2_SUPPORT	// MPEG-2 ‘Î‰ž
