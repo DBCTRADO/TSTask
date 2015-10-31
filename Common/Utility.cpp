@@ -229,7 +229,7 @@ namespace TSTask
 		return FileTimeSpan(ft1,ft2)/FILETIME_MILLISECOND;
 	}
 
-	bool GetDayOfWeekText(int DayOfWeek,String *pText,bool fShort)
+	bool GetDayOfWeekText(int DayOfWeek,String *pText,bool fShort,LPCWSTR pszLocale)
 	{
 		if (pText==nullptr)
 			return false;
@@ -239,10 +239,11 @@ namespace TSTask
 		if (DayOfWeek<0 || DayOfWeek>=7)
 			return false;
 
-		WCHAR szText[64];
-		if (::GetCalendarInfo(LOCALE_USER_DEFAULT,CAL_GREGORIAN,
-							  (fShort?CAL_SABBREVDAYNAME1:CAL_SDAYNAME1)+DayOfWeek,
-							  szText,_countof(szText),nullptr)<1)
+		WCHAR szText[80];
+		if (::GetCalendarInfoEx(pszLocale!=nullptr?pszLocale:LOCALE_NAME_USER_DEFAULT,
+								CAL_GREGORIAN,nullptr,
+								(fShort?CAL_SABBREVDAYNAME1:CAL_SDAYNAME1)+(DayOfWeek+6)%7,
+								szText,_countof(szText),nullptr)<1)
 			return false;
 
 		pText->assign(szText);

@@ -70,7 +70,7 @@ namespace TSTask
 	bool OffsetSystemTime(SYSTEMTIME *pTime,LONGLONG Offset);
 	LONGLONG FileTimeSpan(const FILETIME &Time1,const FILETIME &Time2);
 	LONGLONG SystemTimeSpan(const SYSTEMTIME &Time1,const SYSTEMTIME &Time2);
-	bool GetDayOfWeekText(int DayOfWeek,String *pText,bool fShort=true);
+	bool GetDayOfWeekText(int DayOfWeek,String *pText,bool fShort=true,LPCWSTR pszLocale=nullptr);
 
 
 	namespace StringUtility

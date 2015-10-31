@@ -101,11 +101,7 @@ namespace TSTask
 		} else if (::lstrcmpiW(pszKeyword,L"day-of-week")==0) {
 			GetDayOfWeekText(Time.wDayOfWeek,pString);
 		} else if (::lstrcmpiW(pszKeyword,L"day-of-week-en")==0) {
-			static const LPCWSTR DayOfWeekList[] = {
-				L"Sun",L"Mon",L"Tue",L"Wed",L"Thu",L"Fri",L"Sat"
-			};
-			if (Time.wDayOfWeek<_countof(DayOfWeekList))
-				*pString=DayOfWeekList[Time.wDayOfWeek];
+			GetDayOfWeekText(Time.wDayOfWeek,pString,true,L"en-US");
 		} else {
 			return false;
 		}
