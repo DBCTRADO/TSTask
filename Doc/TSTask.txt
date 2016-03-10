@@ -18,19 +18,29 @@
 
 ◆ 動作環境
 
-  ・Windows Vista(*) / 7 / 8
+  ・Windows Vista(*) / 7 / 8 / 10
     (*) Meiryo UI が必要
 
 
+◆ 構築方法
+
+  ソリューションファイル TSTask.sln を Visual Studio 2003 / 2005 で開き、ビルド
+  することができます。
+
+
 ◆ ファイル構成
+
+  ファイルを以下のように配置します。
 
   ・TSTask.exe              TS 処理プログラム
   ・TSTask.default.ini      TSTask のデフォルト設定ファイル
   ・TSTask.txt              このファイル
   ・TSTaskCentre.exe        TSTask 制御プログラム
-  ・BonDriver_TSTask.dll    TSTask のストリーム受信用 BonDriver
-  ・License.txt             ライセンス(GPL)
   ・TSTaskThemes\*.tttheme  テーマファイル
+
+  以下のファイルは、必要に応じて BonDriver を利用するプログラムに配置します。
+
+  ・BonDriver_TSTask.dll    TSTask のストリーム受信用 BonDriver
 
 
 ◆ 導入
@@ -268,8 +278,6 @@
 ◆ BonDriver_TSTask
 
   BonDriver_TSTask は、TSTask で受信中のストリームを開くための BonDriver です。
-  一部手抜きしていますので、TVTest 以外で使用すると正常に動作しない可能性があり
-  ます。
 
 
 ◆ ログについて
