@@ -339,6 +339,7 @@ namespace TSTaskCentre
 
 		AdjustSize();
 		UpdateTransparent();
+		RedrawCaption();
 
 		return true;
 	}
@@ -781,12 +782,7 @@ namespace TSTaskCentre
 			break;
 
 		case WM_NCACTIVATE:
-			if (!m_fTransparentCaption) {
-				RECT rc;
-
-				GetCaptionRect(&rc);
-				Invalidate(rc);
-			}
+			RedrawCaption();
 			break;
 
 		case WM_GETMINMAXINFO:
@@ -1093,6 +1089,16 @@ namespace TSTaskCentre
 				Margins.cxLeftWidth=-1;
 			if (::DwmExtendFrameIntoClientArea(m_hwnd,&Margins)==S_OK)
 				m_fTransparentCaption=true;
+		}
+	}
+
+	void CMainBoard::RedrawCaption()
+	{
+		if (!m_fTransparentCaption) {
+			RECT rc;
+
+			GetCaptionRect(&rc);
+			Invalidate(rc);
 		}
 	}
 

@@ -180,6 +180,7 @@ namespace TSTaskCentre
 		bool ConfirmRecordingChannelChange(TSTask::TaskID ID);
 		void GetCaptionRect(RECT *pRect) const;
 		void UpdateTransparent();
+		void RedrawCaption();
 		void OnCommand(int Command);
 		bool ShowMainMenu(int x,int y) const;
 		bool EndTask(TSTask::TaskID ID,bool fConfirm=true);
