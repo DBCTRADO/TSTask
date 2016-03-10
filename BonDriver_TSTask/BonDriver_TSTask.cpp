@@ -117,15 +117,22 @@ const float CBonDriver_TSTask::GetSignalLevel()
 
 const DWORD CBonDriver_TSTask::WaitTsStream(const DWORD dwTimeOut)
 {
-	// –¢ŽÀ‘•
-	::Sleep(0);
+	const DWORD StartTime=::GetTickCount();
+
+	while (m_StreamPool.GetStreamLength()==0) {
+		if (CheckEnded())
+			return WAIT_ABANDONED;
+		if (dwTimeOut==0 || ::GetTickCount()-StartTime>=dwTimeOut)
+			return WAIT_TIMEOUT;
+		::Sleep(10);
+	}
+
 	return WAIT_OBJECT_0;
 }
 
 const DWORD CBonDriver_TSTask::GetReadyCount()
 {
-	// –¢ŽÀ‘•
-	return 0;
+	return (m_StreamPool.GetStreamLength()+255)/256;
 }
 
 const BOOL CBonDriver_TSTask::GetTsStream(BYTE *pDst,DWORD *pdwSize,DWORD *pdwRemain)

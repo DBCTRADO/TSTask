@@ -47,6 +47,7 @@ namespace TSTask
 		bool Write(const void *pBuffer,DWORD BufferLength);
 		bool Read(void *pBuffer,DWORD *pBufferLength,CStreamPosition *pPosition);
 		bool Read(CDataBlock *pData,CStreamPosition *pPosition);
+		DWORD GetStreamLength();
 
 	private:
 		CSharedMemory m_SharedMemory;

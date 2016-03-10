@@ -281,4 +281,25 @@ namespace TSTask
 		return true;
 	}
 
+	DWORD CStreamPool::GetStreamLength()
+	{
+		if (m_pBuffer==nullptr)
+			return 0;
+
+		if (!m_SharedMemory.Lock(m_Timeout))
+			return 0;
+
+		const StreamInfo *pInfo=reinterpret_cast<const StreamInfo*>(m_pBuffer);
+		DWORD Length;
+
+		if ((pInfo->Status&STATUS_ENDED)!=0)
+			Length=0;
+		else
+			Length=pInfo->StreamLength;
+
+		m_SharedMemory.Unlock();
+
+		return Length;
+	}
+
 }
