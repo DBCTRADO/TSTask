@@ -234,8 +234,8 @@ namespace TSTask
 			if (Left>Next)
 				pTitle->append(EventName.substr(Next,Left-Next));
 
-			if (Right-Left>3)
-				pTitle->append(EventName.substr(Left,Right-Left));
+			if (Right-Left+1>5)
+				pTitle->append(EventName.substr(Left,Right-Left+1));
 
 			Next=Right+1;
 		}
