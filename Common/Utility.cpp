@@ -281,15 +281,18 @@ namespace TSTask
 				return 0;
 			}
 
+			va_list CopyArgs;
+			va_copy(CopyArgs,Args);
 			int Length=::_vscwprintf(pszFormat,Args);
 			if (Length<=0) {
 				Str.clear();
-				return 0;
+			} else {
+				LPWSTR pszBuffer=new WCHAR[Length+1];
+				int Result=::_vsnwprintf_s(pszBuffer,Length+1,_TRUNCATE,pszFormat,CopyArgs);
+				Str=pszBuffer;
+				delete [] pszBuffer;
 			}
-			LPWSTR pszBuffer=new WCHAR[Length+1];
-			int Result=::_vsnwprintf_s(pszBuffer,Length+1,_TRUNCATE,pszFormat,Args);
-			Str=pszBuffer;
-			delete [] pszBuffer;
+			va_end(CopyArgs);
 
 			return (int)Str.length();
 		}
